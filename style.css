@@ -1,0 +1,277 @@
+:root {
+    /* Ana renkler */
+    --bg-color: rgba(18, 18, 18, 0.3);
+    --overlay-color: rgba(0, 0, 0, 0.65);
+    --text-color: #ffffff;
+    --card-bg: rgba(255, 255, 255, 0.1);
+    --card-hover: rgba(255, 255, 255, 0.15);
+    --card-border: rgba(255, 255, 255, 0.1);
+    
+    /* Sosyal medya renkleri */
+    --instagram: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    --youtube: #FF0000;
+    --twitter: #1DA1F2;
+    --spotify: #1DB954;
+    --website: #6c5ce7;
+    
+    /* Animasyon */
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    
+    /* Arka plan resmi URL'si */
+    --bg-image: url('https://cdn.glitch.global/0d92cdad-efe1-4290-97b5-01a8b3c872e1/background.jpg?v=1745254844667');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+    background-color: #121212; /* Fallback renk */
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: var(--bg-image);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -2;
+}
+
+.bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay-color);
+    z-index: -1;
+}
+
+.container {
+    max-width: 680px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    z-index: 1;
+}
+
+/* Header & Profile */
+header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    padding: 3px;
+    background-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.profile h1 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.bio {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 400px;
+    margin: 0 auto;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Links */
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.link-card {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.link-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    transition: var(--transition);
+}
+
+.link-card[data-color="instagram"]::before {
+    background: var(--instagram);
+}
+
+.link-card[data-color="youtube"]::before {
+    background: var(--youtube);
+}
+
+.link-card[data-color="twitter"]::before {
+    background: var(--twitter);
+}
+
+.link-card[data-color="spotify"]::before {
+    background: var(--spotify);
+}
+
+.link-card[data-color="website"]::before {
+    background: var(--website);
+}
+
+.link-card:hover {
+    transform: translateY(-3px);
+    background-color: var(--card-hover);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2);
+}
+
+.link-icon {
+    margin-right: 15px;
+    font-size: 20px;
+    width: 24px;
+    text-align: center;
+}
+
+.link-card[data-color="instagram"] .link-icon {
+    color: #e1306c;
+}
+
+.link-card[data-color="youtube"] .link-icon {
+    color: var(--youtube);
+}
+
+.link-card[data-color="twitter"] .link-icon {
+    color: var(--twitter);
+}
+
+.link-card[data-color="spotify"] .link-icon {
+    color: var(--spotify);
+}
+
+.link-card[data-color="website"] .link-icon {
+    color: var(--website);
+}
+
+.link-text {
+    flex: 1;
+    font-size: 16px;
+}
+
+.link-arrow {
+    font-size: 14px;
+    opacity: 0.7;
+    transition: var(--transition);
+}
+
+.link-card:hover .link-arrow {
+    transform: translateX(3px);
+    opacity: 1;
+}
+
+/* Footer */
+footer {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.social-bar {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    text-decoration: none;
+    transition: var(--transition);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.social-icon:hover {
+    transform: translateY(-3px);
+    background-color: var(--card-hover);
+}
+
+.copyright {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .container {
+        padding: 30px 15px;
+    }
+    
+    .profile-img {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .link-card {
+        padding: 14px 16px;
+    }
+}
